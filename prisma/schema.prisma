@@ -1,0 +1,96 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model cliente {
+  id            Int       @id @default(autoincrement())
+  nome          String    @db.VarChar(100)
+  cpf_cnpj      String    @unique @db.VarChar(20)
+  telefone      String?   @db.VarChar(20)
+  email         String    @unique @db.VarChar(100)
+  endereco      String?   @db.VarChar(200)
+  data_cadastro DateTime? @default(dbgenerated("CURRENT_DATE")) @db.Date
+  pedido        pedido[]
+}
+
+model fornecedor {
+  id            Int       @id @default(autoincrement())
+  nome_fantasia String    @db.VarChar(100)
+  razao_social  String?   @db.VarChar(150)
+  cnpj          String    @unique @db.VarChar(20)
+  telefone      String?   @db.VarChar(20)
+  email         String    @unique @db.VarChar(100)
+  endereco      String?   @db.VarChar(200)
+  data_cadastro DateTime? @default(dbgenerated("CURRENT_DATE")) @db.Date
+  insumo        insumo[]
+  produto       produto[]
+}
+
+model insumo {
+  id             Int              @id @default(autoincrement())
+  nome           String           @db.VarChar(100)
+  descricao      String?          @db.VarChar(200)
+  unidade_medida String?          @db.VarChar(20)
+  preco_unitario Decimal?         @db.Decimal(10, 2)
+  id_fornecedor  Int?
+  fornecedor     fornecedor?      @relation(fields: [id_fornecedor], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_fornecedor")
+  produto_insumo produto_insumo[]
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model pedido {
+  id             Int              @id @default(autoincrement())
+  id_cliente     Int?
+  data_pedido    DateTime?        @default(dbgenerated("CURRENT_DATE")) @db.Date
+  data_entrega   DateTime?        @db.Date
+  status         String?          @db.VarChar(20)
+  valor_total    Decimal?         @db.Decimal(12, 2)
+  cliente        cliente?         @relation(fields: [id_cliente], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_cliente")
+  pedido_produto pedido_produto[]
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model pedido_produto {
+  id             Int      @id @default(autoincrement())
+  id_pedido      Int
+  id_produto     Int
+  quantidade     Int?
+  preco_unitario Decimal? @db.Decimal(10, 2)
+  pedido         pedido   @relation(fields: [id_pedido], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_pedido")
+  produto        produto  @relation(fields: [id_produto], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_produto")
+
+  @@unique([id_pedido, id_produto], map: "unico_pedido_produto")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model produto {
+  id             Int              @id @default(autoincrement())
+  nome           String           @db.VarChar(100)
+  descricao      String?          @db.VarChar(200)
+  preco_unitario Decimal?         @db.Decimal(10, 2)
+  estoque        Int?             @default(0)
+  unidade_medida String?          @db.VarChar(20)
+  id_fornecedor  Int?
+  pedido_produto pedido_produto[]
+  fornecedor     fornecedor?      @relation(fields: [id_fornecedor], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_fornecedor")
+  produto_insumo produto_insumo[]
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model produto_insumo {
+  id             Int      @id @default(autoincrement())
+  id_produto     Int?
+  id_insumo      Int?
+  quantidade     Decimal? @db.Decimal(10, 2)
+  preco_unitario Decimal? @db.Decimal(10, 2)
+  insumo         insumo?  @relation(fields: [id_insumo], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_insumo")
+  produto        produto? @relation(fields: [id_produto], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_produto")
+
+  @@unique([id_produto, id_insumo], map: "unico_produto_insumo")
+}
