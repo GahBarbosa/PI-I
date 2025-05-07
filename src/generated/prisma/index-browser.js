@@ -117,8 +117,8 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
-exports.Prisma.ClienteScalarFieldEnum = {
-  id: 'id',
+exports.Prisma.Dim_clienteScalarFieldEnum = {
+  cliente_id: 'cliente_id',
   nome: 'nome',
   cpf_cnpj: 'cpf_cnpj',
   telefone: 'telefone',
@@ -127,8 +127,8 @@ exports.Prisma.ClienteScalarFieldEnum = {
   data_cadastro: 'data_cadastro'
 };
 
-exports.Prisma.FornecedorScalarFieldEnum = {
-  id: 'id',
+exports.Prisma.Dim_fornecedorScalarFieldEnum = {
+  fornecedor_id: 'fornecedor_id',
   nome_fantasia: 'nome_fantasia',
   razao_social: 'razao_social',
   cnpj: 'cnpj',
@@ -138,46 +138,46 @@ exports.Prisma.FornecedorScalarFieldEnum = {
   data_cadastro: 'data_cadastro'
 };
 
-exports.Prisma.InsumoScalarFieldEnum = {
-  id: 'id',
+exports.Prisma.Dim_insumoScalarFieldEnum = {
+  insumo_id: 'insumo_id',
   nome: 'nome',
   descricao: 'descricao',
   unidade_medida: 'unidade_medida',
   preco_unitario: 'preco_unitario',
-  id_fornecedor: 'id_fornecedor'
+  fornecedor_id: 'fornecedor_id'
 };
 
-exports.Prisma.PedidoScalarFieldEnum = {
-  id: 'id',
-  id_cliente: 'id_cliente',
+exports.Prisma.Dim_produtoScalarFieldEnum = {
+  produto_id: 'produto_id',
+  nome: 'nome',
+  descricao: 'descricao',
+  preco_unitario: 'preco_unitario',
+  estoque: 'estoque',
+  unidade_medida: 'unidade_medida',
+  fornecedor_id: 'fornecedor_id'
+};
+
+exports.Prisma.Fct_pedidoScalarFieldEnum = {
+  pedido_id: 'pedido_id',
+  cliente_id: 'cliente_id',
   data_pedido: 'data_pedido',
   data_entrega: 'data_entrega',
   status: 'status',
   valor_total: 'valor_total'
 };
 
-exports.Prisma.Pedido_produtoScalarFieldEnum = {
-  id: 'id',
-  id_pedido: 'id_pedido',
-  id_produto: 'id_produto',
+exports.Prisma.Map_produto_composicaoScalarFieldEnum = {
+  map_id: 'map_id',
+  produto_id: 'produto_id',
+  insumo_id: 'insumo_id',
   quantidade: 'quantidade',
   preco_unitario: 'preco_unitario'
 };
 
-exports.Prisma.ProdutoScalarFieldEnum = {
-  id: 'id',
-  nome: 'nome',
-  descricao: 'descricao',
-  preco_unitario: 'preco_unitario',
-  estoque: 'estoque',
-  unidade_medida: 'unidade_medida',
-  id_fornecedor: 'id_fornecedor'
-};
-
-exports.Prisma.Produto_insumoScalarFieldEnum = {
-  id: 'id',
-  id_produto: 'id_produto',
-  id_insumo: 'id_insumo',
+exports.Prisma.Map_pedido_detalheScalarFieldEnum = {
+  map_id: 'map_id',
+  pedido_id: 'pedido_id',
+  produto_id: 'produto_id',
   quantidade: 'quantidade',
   preco_unitario: 'preco_unitario'
 };
@@ -199,13 +199,13 @@ exports.Prisma.NullsOrder = {
 
 
 exports.Prisma.ModelName = {
-  cliente: 'cliente',
-  fornecedor: 'fornecedor',
-  insumo: 'insumo',
-  pedido: 'pedido',
-  pedido_produto: 'pedido_produto',
-  produto: 'produto',
-  produto_insumo: 'produto_insumo'
+  dim_cliente: 'dim_cliente',
+  dim_fornecedor: 'dim_fornecedor',
+  dim_insumo: 'dim_insumo',
+  dim_produto: 'dim_produto',
+  fct_pedido: 'fct_pedido',
+  map_produto_composicao: 'map_produto_composicao',
+  map_pedido_detalhe: 'map_pedido_detalhe'
 };
 
 /**
