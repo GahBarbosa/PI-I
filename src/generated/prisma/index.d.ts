@@ -50,6 +50,42 @@ export type map_produto_composicao = $Result.DefaultSelection<Prisma.$map_produt
 export type map_pedido_detalhe = $Result.DefaultSelection<Prisma.$map_pedido_detalhePayload>
 
 /**
+ * Enums
+ */
+export namespace $Enums {
+  export const Unidade_medida: {
+  Unidade: 'Unidade',
+  Duzia: 'Duzia',
+  Pacote: 'Pacote',
+  Kilo: 'Kilo',
+  Litro: 'Litro',
+  Centimetro: 'Centimetro'
+};
+
+export type Unidade_medida = (typeof Unidade_medida)[keyof typeof Unidade_medida]
+
+
+export const Status: {
+  Corte: 'Corte',
+  Costura: 'Costura',
+  Revisão: 'Revisão',
+  Etiqueta: 'Etiqueta',
+  Embalagem: 'Embalagem'
+};
+
+export type Status = (typeof Status)[keyof typeof Status]
+
+}
+
+export type Unidade_medida = $Enums.Unidade_medida
+
+export const Unidade_medida: typeof $Enums.Unidade_medida
+
+export type Status = $Enums.Status
+
+export const Status: typeof $Enums.Status
+
+/**
  * ##  Prisma Client ʲˢ
  *
  * Type-safe database client for TypeScript & Node.js
@@ -3916,7 +3952,7 @@ export namespace Prisma {
     insumo_id: number | null
     nome: string | null
     descricao: string | null
-    unidade_medida: string | null
+    unidade_medida: $Enums.Unidade_medida | null
     preco_unitario: Decimal | null
     fornecedor_id: number | null
   }
@@ -3925,7 +3961,7 @@ export namespace Prisma {
     insumo_id: number | null
     nome: string | null
     descricao: string | null
-    unidade_medida: string | null
+    unidade_medida: $Enums.Unidade_medida | null
     preco_unitario: Decimal | null
     fornecedor_id: number | null
   }
@@ -4071,7 +4107,7 @@ export namespace Prisma {
     insumo_id: number
     nome: string
     descricao: string | null
-    unidade_medida: string | null
+    unidade_medida: $Enums.Unidade_medida
     preco_unitario: Decimal | null
     fornecedor_id: number | null
     _count: Dim_insumoCountAggregateOutputType | null
@@ -4159,7 +4195,7 @@ export namespace Prisma {
       insumo_id: number
       nome: string
       descricao: string | null
-      unidade_medida: string | null
+      unidade_medida: $Enums.Unidade_medida
       preco_unitario: Prisma.Decimal | null
       fornecedor_id: number | null
     }, ExtArgs["result"]["dim_insumo"]>
@@ -4590,7 +4626,7 @@ export namespace Prisma {
     readonly insumo_id: FieldRef<"dim_insumo", 'Int'>
     readonly nome: FieldRef<"dim_insumo", 'String'>
     readonly descricao: FieldRef<"dim_insumo", 'String'>
-    readonly unidade_medida: FieldRef<"dim_insumo", 'String'>
+    readonly unidade_medida: FieldRef<"dim_insumo", 'Unidade_medida'>
     readonly preco_unitario: FieldRef<"dim_insumo", 'Decimal'>
     readonly fornecedor_id: FieldRef<"dim_insumo", 'Int'>
   }
@@ -5082,7 +5118,7 @@ export namespace Prisma {
     descricao: string | null
     preco_unitario: Decimal | null
     estoque: number | null
-    unidade_medida: string | null
+    unidade_medida: $Enums.Unidade_medida | null
     fornecedor_id: number | null
   }
 
@@ -5092,7 +5128,7 @@ export namespace Prisma {
     descricao: string | null
     preco_unitario: Decimal | null
     estoque: number | null
-    unidade_medida: string | null
+    unidade_medida: $Enums.Unidade_medida | null
     fornecedor_id: number | null
   }
 
@@ -5245,7 +5281,7 @@ export namespace Prisma {
     descricao: string | null
     preco_unitario: Decimal | null
     estoque: number | null
-    unidade_medida: string | null
+    unidade_medida: $Enums.Unidade_medida
     fornecedor_id: number | null
     _count: Dim_produtoCountAggregateOutputType | null
     _avg: Dim_produtoAvgAggregateOutputType | null
@@ -5341,7 +5377,7 @@ export namespace Prisma {
       descricao: string | null
       preco_unitario: Prisma.Decimal | null
       estoque: number | null
-      unidade_medida: string | null
+      unidade_medida: $Enums.Unidade_medida
       fornecedor_id: number | null
     }, ExtArgs["result"]["dim_produto"]>
     composites: {}
@@ -5774,7 +5810,7 @@ export namespace Prisma {
     readonly descricao: FieldRef<"dim_produto", 'String'>
     readonly preco_unitario: FieldRef<"dim_produto", 'Decimal'>
     readonly estoque: FieldRef<"dim_produto", 'Int'>
-    readonly unidade_medida: FieldRef<"dim_produto", 'String'>
+    readonly unidade_medida: FieldRef<"dim_produto", 'Unidade_medida'>
     readonly fornecedor_id: FieldRef<"dim_produto", 'Int'>
   }
     
@@ -6286,7 +6322,7 @@ export namespace Prisma {
     cliente_id: number | null
     data_pedido: Date | null
     data_entrega: Date | null
-    status: string | null
+    status: $Enums.Status | null
     valor_total: Decimal | null
   }
 
@@ -6295,7 +6331,7 @@ export namespace Prisma {
     cliente_id: number | null
     data_pedido: Date | null
     data_entrega: Date | null
-    status: string | null
+    status: $Enums.Status | null
     valor_total: Decimal | null
   }
 
@@ -6441,7 +6477,7 @@ export namespace Prisma {
     cliente_id: number | null
     data_pedido: Date | null
     data_entrega: Date | null
-    status: string
+    status: $Enums.Status
     valor_total: Decimal | null
     _count: Fct_pedidoCountAggregateOutputType | null
     _avg: Fct_pedidoAvgAggregateOutputType | null
@@ -6529,7 +6565,7 @@ export namespace Prisma {
       cliente_id: number | null
       data_pedido: Date | null
       data_entrega: Date | null
-      status: string
+      status: $Enums.Status
       valor_total: Prisma.Decimal | null
     }, ExtArgs["result"]["fct_pedido"]>
     composites: {}
@@ -6960,7 +6996,7 @@ export namespace Prisma {
     readonly cliente_id: FieldRef<"fct_pedido", 'Int'>
     readonly data_pedido: FieldRef<"fct_pedido", 'DateTime'>
     readonly data_entrega: FieldRef<"fct_pedido", 'DateTime'>
-    readonly status: FieldRef<"fct_pedido", 'String'>
+    readonly status: FieldRef<"fct_pedido", 'Status'>
     readonly valor_total: FieldRef<"fct_pedido", 'Decimal'>
   }
     
@@ -9861,6 +9897,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Unidade_medida'
+   */
+  export type EnumUnidade_medidaFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Unidade_medida'>
+    
+
+
+  /**
+   * Reference to a field of type 'Unidade_medida[]'
+   */
+  export type ListEnumUnidade_medidaFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Unidade_medida[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Decimal'
    */
   export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal'>
@@ -9871,6 +9921,20 @@ export namespace Prisma {
    * Reference to a field of type 'Decimal[]'
    */
   export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Status'
+   */
+  export type EnumStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Status'>
+    
+
+
+  /**
+   * Reference to a field of type 'Status[]'
+   */
+  export type ListEnumStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Status[]'>
     
 
 
@@ -10040,7 +10104,7 @@ export namespace Prisma {
     insumo_id?: IntFilter<"dim_insumo"> | number
     nome?: StringFilter<"dim_insumo"> | string
     descricao?: StringNullableFilter<"dim_insumo"> | string | null
-    unidade_medida?: StringNullableFilter<"dim_insumo"> | string | null
+    unidade_medida?: EnumUnidade_medidaFilter<"dim_insumo"> | $Enums.Unidade_medida
     preco_unitario?: DecimalNullableFilter<"dim_insumo"> | Decimal | DecimalJsLike | number | string | null
     fornecedor_id?: IntNullableFilter<"dim_insumo"> | number | null
     fornecedor?: XOR<Dim_fornecedorNullableScalarRelationFilter, dim_fornecedorWhereInput> | null
@@ -10051,7 +10115,7 @@ export namespace Prisma {
     insumo_id?: SortOrder
     nome?: SortOrder
     descricao?: SortOrderInput | SortOrder
-    unidade_medida?: SortOrderInput | SortOrder
+    unidade_medida?: SortOrder
     preco_unitario?: SortOrderInput | SortOrder
     fornecedor_id?: SortOrderInput | SortOrder
     fornecedor?: dim_fornecedorOrderByWithRelationInput
@@ -10065,7 +10129,7 @@ export namespace Prisma {
     NOT?: dim_insumoWhereInput | dim_insumoWhereInput[]
     nome?: StringFilter<"dim_insumo"> | string
     descricao?: StringNullableFilter<"dim_insumo"> | string | null
-    unidade_medida?: StringNullableFilter<"dim_insumo"> | string | null
+    unidade_medida?: EnumUnidade_medidaFilter<"dim_insumo"> | $Enums.Unidade_medida
     preco_unitario?: DecimalNullableFilter<"dim_insumo"> | Decimal | DecimalJsLike | number | string | null
     fornecedor_id?: IntNullableFilter<"dim_insumo"> | number | null
     fornecedor?: XOR<Dim_fornecedorNullableScalarRelationFilter, dim_fornecedorWhereInput> | null
@@ -10076,7 +10140,7 @@ export namespace Prisma {
     insumo_id?: SortOrder
     nome?: SortOrder
     descricao?: SortOrderInput | SortOrder
-    unidade_medida?: SortOrderInput | SortOrder
+    unidade_medida?: SortOrder
     preco_unitario?: SortOrderInput | SortOrder
     fornecedor_id?: SortOrderInput | SortOrder
     _count?: dim_insumoCountOrderByAggregateInput
@@ -10093,7 +10157,7 @@ export namespace Prisma {
     insumo_id?: IntWithAggregatesFilter<"dim_insumo"> | number
     nome?: StringWithAggregatesFilter<"dim_insumo"> | string
     descricao?: StringNullableWithAggregatesFilter<"dim_insumo"> | string | null
-    unidade_medida?: StringNullableWithAggregatesFilter<"dim_insumo"> | string | null
+    unidade_medida?: EnumUnidade_medidaWithAggregatesFilter<"dim_insumo"> | $Enums.Unidade_medida
     preco_unitario?: DecimalNullableWithAggregatesFilter<"dim_insumo"> | Decimal | DecimalJsLike | number | string | null
     fornecedor_id?: IntNullableWithAggregatesFilter<"dim_insumo"> | number | null
   }
@@ -10107,7 +10171,7 @@ export namespace Prisma {
     descricao?: StringNullableFilter<"dim_produto"> | string | null
     preco_unitario?: DecimalNullableFilter<"dim_produto"> | Decimal | DecimalJsLike | number | string | null
     estoque?: IntNullableFilter<"dim_produto"> | number | null
-    unidade_medida?: StringNullableFilter<"dim_produto"> | string | null
+    unidade_medida?: EnumUnidade_medidaFilter<"dim_produto"> | $Enums.Unidade_medida
     fornecedor_id?: IntNullableFilter<"dim_produto"> | number | null
     fornecedor?: XOR<Dim_fornecedorNullableScalarRelationFilter, dim_fornecedorWhereInput> | null
     map_detalhe?: Map_pedido_detalheListRelationFilter
@@ -10120,7 +10184,7 @@ export namespace Prisma {
     descricao?: SortOrderInput | SortOrder
     preco_unitario?: SortOrderInput | SortOrder
     estoque?: SortOrderInput | SortOrder
-    unidade_medida?: SortOrderInput | SortOrder
+    unidade_medida?: SortOrder
     fornecedor_id?: SortOrderInput | SortOrder
     fornecedor?: dim_fornecedorOrderByWithRelationInput
     map_detalhe?: map_pedido_detalheOrderByRelationAggregateInput
@@ -10136,7 +10200,7 @@ export namespace Prisma {
     descricao?: StringNullableFilter<"dim_produto"> | string | null
     preco_unitario?: DecimalNullableFilter<"dim_produto"> | Decimal | DecimalJsLike | number | string | null
     estoque?: IntNullableFilter<"dim_produto"> | number | null
-    unidade_medida?: StringNullableFilter<"dim_produto"> | string | null
+    unidade_medida?: EnumUnidade_medidaFilter<"dim_produto"> | $Enums.Unidade_medida
     fornecedor_id?: IntNullableFilter<"dim_produto"> | number | null
     fornecedor?: XOR<Dim_fornecedorNullableScalarRelationFilter, dim_fornecedorWhereInput> | null
     map_detalhe?: Map_pedido_detalheListRelationFilter
@@ -10149,7 +10213,7 @@ export namespace Prisma {
     descricao?: SortOrderInput | SortOrder
     preco_unitario?: SortOrderInput | SortOrder
     estoque?: SortOrderInput | SortOrder
-    unidade_medida?: SortOrderInput | SortOrder
+    unidade_medida?: SortOrder
     fornecedor_id?: SortOrderInput | SortOrder
     _count?: dim_produtoCountOrderByAggregateInput
     _avg?: dim_produtoAvgOrderByAggregateInput
@@ -10167,7 +10231,7 @@ export namespace Prisma {
     descricao?: StringNullableWithAggregatesFilter<"dim_produto"> | string | null
     preco_unitario?: DecimalNullableWithAggregatesFilter<"dim_produto"> | Decimal | DecimalJsLike | number | string | null
     estoque?: IntNullableWithAggregatesFilter<"dim_produto"> | number | null
-    unidade_medida?: StringNullableWithAggregatesFilter<"dim_produto"> | string | null
+    unidade_medida?: EnumUnidade_medidaWithAggregatesFilter<"dim_produto"> | $Enums.Unidade_medida
     fornecedor_id?: IntNullableWithAggregatesFilter<"dim_produto"> | number | null
   }
 
@@ -10179,7 +10243,7 @@ export namespace Prisma {
     cliente_id?: IntNullableFilter<"fct_pedido"> | number | null
     data_pedido?: DateTimeNullableFilter<"fct_pedido"> | Date | string | null
     data_entrega?: DateTimeNullableFilter<"fct_pedido"> | Date | string | null
-    status?: StringFilter<"fct_pedido"> | string
+    status?: EnumStatusFilter<"fct_pedido"> | $Enums.Status
     valor_total?: DecimalNullableFilter<"fct_pedido"> | Decimal | DecimalJsLike | number | string | null
     cliente?: XOR<Dim_clienteNullableScalarRelationFilter, dim_clienteWhereInput> | null
     map_detalhe?: Map_pedido_detalheListRelationFilter
@@ -10204,7 +10268,7 @@ export namespace Prisma {
     cliente_id?: IntNullableFilter<"fct_pedido"> | number | null
     data_pedido?: DateTimeNullableFilter<"fct_pedido"> | Date | string | null
     data_entrega?: DateTimeNullableFilter<"fct_pedido"> | Date | string | null
-    status?: StringFilter<"fct_pedido"> | string
+    status?: EnumStatusFilter<"fct_pedido"> | $Enums.Status
     valor_total?: DecimalNullableFilter<"fct_pedido"> | Decimal | DecimalJsLike | number | string | null
     cliente?: XOR<Dim_clienteNullableScalarRelationFilter, dim_clienteWhereInput> | null
     map_detalhe?: Map_pedido_detalheListRelationFilter
@@ -10232,7 +10296,7 @@ export namespace Prisma {
     cliente_id?: IntNullableWithAggregatesFilter<"fct_pedido"> | number | null
     data_pedido?: DateTimeNullableWithAggregatesFilter<"fct_pedido"> | Date | string | null
     data_entrega?: DateTimeNullableWithAggregatesFilter<"fct_pedido"> | Date | string | null
-    status?: StringWithAggregatesFilter<"fct_pedido"> | string
+    status?: EnumStatusWithAggregatesFilter<"fct_pedido"> | $Enums.Status
     valor_total?: DecimalNullableWithAggregatesFilter<"fct_pedido"> | Decimal | DecimalJsLike | number | string | null
   }
 
@@ -10514,7 +10578,7 @@ export namespace Prisma {
   export type dim_insumoCreateInput = {
     nome: string
     descricao?: string | null
-    unidade_medida?: string | null
+    unidade_medida: $Enums.Unidade_medida
     preco_unitario?: Decimal | DecimalJsLike | number | string | null
     fornecedor?: dim_fornecedorCreateNestedOneWithoutDim_insumoInput
     map_composicao?: map_produto_composicaoCreateNestedManyWithoutInsumoInput
@@ -10524,7 +10588,7 @@ export namespace Prisma {
     insumo_id?: number
     nome: string
     descricao?: string | null
-    unidade_medida?: string | null
+    unidade_medida: $Enums.Unidade_medida
     preco_unitario?: Decimal | DecimalJsLike | number | string | null
     fornecedor_id?: number | null
     map_composicao?: map_produto_composicaoUncheckedCreateNestedManyWithoutInsumoInput
@@ -10533,7 +10597,7 @@ export namespace Prisma {
   export type dim_insumoUpdateInput = {
     nome?: StringFieldUpdateOperationsInput | string
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
-    unidade_medida?: NullableStringFieldUpdateOperationsInput | string | null
+    unidade_medida?: EnumUnidade_medidaFieldUpdateOperationsInput | $Enums.Unidade_medida
     preco_unitario?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     fornecedor?: dim_fornecedorUpdateOneWithoutDim_insumoNestedInput
     map_composicao?: map_produto_composicaoUpdateManyWithoutInsumoNestedInput
@@ -10543,7 +10607,7 @@ export namespace Prisma {
     insumo_id?: IntFieldUpdateOperationsInput | number
     nome?: StringFieldUpdateOperationsInput | string
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
-    unidade_medida?: NullableStringFieldUpdateOperationsInput | string | null
+    unidade_medida?: EnumUnidade_medidaFieldUpdateOperationsInput | $Enums.Unidade_medida
     preco_unitario?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     fornecedor_id?: NullableIntFieldUpdateOperationsInput | number | null
     map_composicao?: map_produto_composicaoUncheckedUpdateManyWithoutInsumoNestedInput
@@ -10553,7 +10617,7 @@ export namespace Prisma {
     insumo_id?: number
     nome: string
     descricao?: string | null
-    unidade_medida?: string | null
+    unidade_medida: $Enums.Unidade_medida
     preco_unitario?: Decimal | DecimalJsLike | number | string | null
     fornecedor_id?: number | null
   }
@@ -10561,7 +10625,7 @@ export namespace Prisma {
   export type dim_insumoUpdateManyMutationInput = {
     nome?: StringFieldUpdateOperationsInput | string
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
-    unidade_medida?: NullableStringFieldUpdateOperationsInput | string | null
+    unidade_medida?: EnumUnidade_medidaFieldUpdateOperationsInput | $Enums.Unidade_medida
     preco_unitario?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
   }
 
@@ -10569,7 +10633,7 @@ export namespace Prisma {
     insumo_id?: IntFieldUpdateOperationsInput | number
     nome?: StringFieldUpdateOperationsInput | string
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
-    unidade_medida?: NullableStringFieldUpdateOperationsInput | string | null
+    unidade_medida?: EnumUnidade_medidaFieldUpdateOperationsInput | $Enums.Unidade_medida
     preco_unitario?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     fornecedor_id?: NullableIntFieldUpdateOperationsInput | number | null
   }
@@ -10579,7 +10643,7 @@ export namespace Prisma {
     descricao?: string | null
     preco_unitario?: Decimal | DecimalJsLike | number | string | null
     estoque?: number | null
-    unidade_medida?: string | null
+    unidade_medida: $Enums.Unidade_medida
     fornecedor?: dim_fornecedorCreateNestedOneWithoutDim_produtoInput
     map_detalhe?: map_pedido_detalheCreateNestedManyWithoutProdutoInput
     map_composicao?: map_produto_composicaoCreateNestedManyWithoutProdutoInput
@@ -10591,7 +10655,7 @@ export namespace Prisma {
     descricao?: string | null
     preco_unitario?: Decimal | DecimalJsLike | number | string | null
     estoque?: number | null
-    unidade_medida?: string | null
+    unidade_medida: $Enums.Unidade_medida
     fornecedor_id?: number | null
     map_detalhe?: map_pedido_detalheUncheckedCreateNestedManyWithoutProdutoInput
     map_composicao?: map_produto_composicaoUncheckedCreateNestedManyWithoutProdutoInput
@@ -10602,7 +10666,7 @@ export namespace Prisma {
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
     preco_unitario?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     estoque?: NullableIntFieldUpdateOperationsInput | number | null
-    unidade_medida?: NullableStringFieldUpdateOperationsInput | string | null
+    unidade_medida?: EnumUnidade_medidaFieldUpdateOperationsInput | $Enums.Unidade_medida
     fornecedor?: dim_fornecedorUpdateOneWithoutDim_produtoNestedInput
     map_detalhe?: map_pedido_detalheUpdateManyWithoutProdutoNestedInput
     map_composicao?: map_produto_composicaoUpdateManyWithoutProdutoNestedInput
@@ -10614,7 +10678,7 @@ export namespace Prisma {
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
     preco_unitario?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     estoque?: NullableIntFieldUpdateOperationsInput | number | null
-    unidade_medida?: NullableStringFieldUpdateOperationsInput | string | null
+    unidade_medida?: EnumUnidade_medidaFieldUpdateOperationsInput | $Enums.Unidade_medida
     fornecedor_id?: NullableIntFieldUpdateOperationsInput | number | null
     map_detalhe?: map_pedido_detalheUncheckedUpdateManyWithoutProdutoNestedInput
     map_composicao?: map_produto_composicaoUncheckedUpdateManyWithoutProdutoNestedInput
@@ -10626,7 +10690,7 @@ export namespace Prisma {
     descricao?: string | null
     preco_unitario?: Decimal | DecimalJsLike | number | string | null
     estoque?: number | null
-    unidade_medida?: string | null
+    unidade_medida: $Enums.Unidade_medida
     fornecedor_id?: number | null
   }
 
@@ -10635,7 +10699,7 @@ export namespace Prisma {
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
     preco_unitario?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     estoque?: NullableIntFieldUpdateOperationsInput | number | null
-    unidade_medida?: NullableStringFieldUpdateOperationsInput | string | null
+    unidade_medida?: EnumUnidade_medidaFieldUpdateOperationsInput | $Enums.Unidade_medida
   }
 
   export type dim_produtoUncheckedUpdateManyInput = {
@@ -10644,14 +10708,14 @@ export namespace Prisma {
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
     preco_unitario?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     estoque?: NullableIntFieldUpdateOperationsInput | number | null
-    unidade_medida?: NullableStringFieldUpdateOperationsInput | string | null
+    unidade_medida?: EnumUnidade_medidaFieldUpdateOperationsInput | $Enums.Unidade_medida
     fornecedor_id?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type fct_pedidoCreateInput = {
     data_pedido?: Date | string | null
     data_entrega?: Date | string | null
-    status: string
+    status: $Enums.Status
     valor_total?: Decimal | DecimalJsLike | number | string | null
     cliente?: dim_clienteCreateNestedOneWithoutFct_pedidoInput
     map_detalhe?: map_pedido_detalheCreateNestedManyWithoutPedidoInput
@@ -10662,7 +10726,7 @@ export namespace Prisma {
     cliente_id?: number | null
     data_pedido?: Date | string | null
     data_entrega?: Date | string | null
-    status: string
+    status: $Enums.Status
     valor_total?: Decimal | DecimalJsLike | number | string | null
     map_detalhe?: map_pedido_detalheUncheckedCreateNestedManyWithoutPedidoInput
   }
@@ -10670,7 +10734,7 @@ export namespace Prisma {
   export type fct_pedidoUpdateInput = {
     data_pedido?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     data_entrega?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    status?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     valor_total?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     cliente?: dim_clienteUpdateOneWithoutFct_pedidoNestedInput
     map_detalhe?: map_pedido_detalheUpdateManyWithoutPedidoNestedInput
@@ -10681,7 +10745,7 @@ export namespace Prisma {
     cliente_id?: NullableIntFieldUpdateOperationsInput | number | null
     data_pedido?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     data_entrega?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    status?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     valor_total?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     map_detalhe?: map_pedido_detalheUncheckedUpdateManyWithoutPedidoNestedInput
   }
@@ -10691,14 +10755,14 @@ export namespace Prisma {
     cliente_id?: number | null
     data_pedido?: Date | string | null
     data_entrega?: Date | string | null
-    status: string
+    status: $Enums.Status
     valor_total?: Decimal | DecimalJsLike | number | string | null
   }
 
   export type fct_pedidoUpdateManyMutationInput = {
     data_pedido?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     data_entrega?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    status?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     valor_total?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
   }
 
@@ -10707,7 +10771,7 @@ export namespace Prisma {
     cliente_id?: NullableIntFieldUpdateOperationsInput | number | null
     data_pedido?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     data_entrega?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    status?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     valor_total?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
   }
 
@@ -11045,6 +11109,13 @@ export namespace Prisma {
     fornecedor_id?: SortOrder
   }
 
+  export type EnumUnidade_medidaFilter<$PrismaModel = never> = {
+    equals?: $Enums.Unidade_medida | EnumUnidade_medidaFieldRefInput<$PrismaModel>
+    in?: $Enums.Unidade_medida[] | ListEnumUnidade_medidaFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Unidade_medida[] | ListEnumUnidade_medidaFieldRefInput<$PrismaModel>
+    not?: NestedEnumUnidade_medidaFilter<$PrismaModel> | $Enums.Unidade_medida
+  }
+
   export type DecimalNullableFilter<$PrismaModel = never> = {
     equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
     in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
@@ -11119,6 +11190,16 @@ export namespace Prisma {
     insumo_id?: SortOrder
     preco_unitario?: SortOrder
     fornecedor_id?: SortOrder
+  }
+
+  export type EnumUnidade_medidaWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Unidade_medida | EnumUnidade_medidaFieldRefInput<$PrismaModel>
+    in?: $Enums.Unidade_medida[] | ListEnumUnidade_medidaFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Unidade_medida[] | ListEnumUnidade_medidaFieldRefInput<$PrismaModel>
+    not?: NestedEnumUnidade_medidaWithAggregatesFilter<$PrismaModel> | $Enums.Unidade_medida
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumUnidade_medidaFilter<$PrismaModel>
+    _max?: NestedEnumUnidade_medidaFilter<$PrismaModel>
   }
 
   export type DecimalNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -11207,6 +11288,13 @@ export namespace Prisma {
     fornecedor_id?: SortOrder
   }
 
+  export type EnumStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumStatusFilter<$PrismaModel> | $Enums.Status
+  }
+
   export type Dim_clienteNullableScalarRelationFilter = {
     is?: dim_clienteWhereInput | null
     isNot?: dim_clienteWhereInput | null
@@ -11249,6 +11337,16 @@ export namespace Prisma {
     pedido_id?: SortOrder
     cliente_id?: SortOrder
     valor_total?: SortOrder
+  }
+
+  export type EnumStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumStatusWithAggregatesFilter<$PrismaModel> | $Enums.Status
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumStatusFilter<$PrismaModel>
+    _max?: NestedEnumStatusFilter<$PrismaModel>
   }
 
   export type DecimalFilter<$PrismaModel = never> = {
@@ -11554,6 +11652,10 @@ export namespace Prisma {
     connect?: map_produto_composicaoWhereUniqueInput | map_produto_composicaoWhereUniqueInput[]
   }
 
+  export type EnumUnidade_medidaFieldUpdateOperationsInput = {
+    set?: $Enums.Unidade_medida
+  }
+
   export type NullableDecimalFieldUpdateOperationsInput = {
     set?: Decimal | DecimalJsLike | number | string | null
     increment?: Decimal | DecimalJsLike | number | string
@@ -11726,6 +11828,10 @@ export namespace Prisma {
     connectOrCreate?: map_pedido_detalheCreateOrConnectWithoutPedidoInput | map_pedido_detalheCreateOrConnectWithoutPedidoInput[]
     createMany?: map_pedido_detalheCreateManyPedidoInputEnvelope
     connect?: map_pedido_detalheWhereUniqueInput | map_pedido_detalheWhereUniqueInput[]
+  }
+
+  export type EnumStatusFieldUpdateOperationsInput = {
+    set?: $Enums.Status
   }
 
   export type dim_clienteUpdateOneWithoutFct_pedidoNestedInput = {
@@ -11970,6 +12076,13 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
+  export type NestedEnumUnidade_medidaFilter<$PrismaModel = never> = {
+    equals?: $Enums.Unidade_medida | EnumUnidade_medidaFieldRefInput<$PrismaModel>
+    in?: $Enums.Unidade_medida[] | ListEnumUnidade_medidaFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Unidade_medida[] | ListEnumUnidade_medidaFieldRefInput<$PrismaModel>
+    not?: NestedEnumUnidade_medidaFilter<$PrismaModel> | $Enums.Unidade_medida
+  }
+
   export type NestedDecimalNullableFilter<$PrismaModel = never> = {
     equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
     in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
@@ -11979,6 +12092,16 @@ export namespace Prisma {
     gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     not?: NestedDecimalNullableFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+  }
+
+  export type NestedEnumUnidade_medidaWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Unidade_medida | EnumUnidade_medidaFieldRefInput<$PrismaModel>
+    in?: $Enums.Unidade_medida[] | ListEnumUnidade_medidaFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Unidade_medida[] | ListEnumUnidade_medidaFieldRefInput<$PrismaModel>
+    not?: NestedEnumUnidade_medidaWithAggregatesFilter<$PrismaModel> | $Enums.Unidade_medida
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumUnidade_medidaFilter<$PrismaModel>
+    _max?: NestedEnumUnidade_medidaFilter<$PrismaModel>
   }
 
   export type NestedDecimalNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -12024,6 +12147,23 @@ export namespace Prisma {
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
+  export type NestedEnumStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumStatusFilter<$PrismaModel> | $Enums.Status
+  }
+
+  export type NestedEnumStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumStatusWithAggregatesFilter<$PrismaModel> | $Enums.Status
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumStatusFilter<$PrismaModel>
+    _max?: NestedEnumStatusFilter<$PrismaModel>
+  }
+
   export type NestedDecimalFilter<$PrismaModel = never> = {
     equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
@@ -12054,7 +12194,7 @@ export namespace Prisma {
   export type fct_pedidoCreateWithoutClienteInput = {
     data_pedido?: Date | string | null
     data_entrega?: Date | string | null
-    status: string
+    status: $Enums.Status
     valor_total?: Decimal | DecimalJsLike | number | string | null
     map_detalhe?: map_pedido_detalheCreateNestedManyWithoutPedidoInput
   }
@@ -12063,7 +12203,7 @@ export namespace Prisma {
     pedido_id?: number
     data_pedido?: Date | string | null
     data_entrega?: Date | string | null
-    status: string
+    status: $Enums.Status
     valor_total?: Decimal | DecimalJsLike | number | string | null
     map_detalhe?: map_pedido_detalheUncheckedCreateNestedManyWithoutPedidoInput
   }
@@ -12102,14 +12242,14 @@ export namespace Prisma {
     cliente_id?: IntNullableFilter<"fct_pedido"> | number | null
     data_pedido?: DateTimeNullableFilter<"fct_pedido"> | Date | string | null
     data_entrega?: DateTimeNullableFilter<"fct_pedido"> | Date | string | null
-    status?: StringFilter<"fct_pedido"> | string
+    status?: EnumStatusFilter<"fct_pedido"> | $Enums.Status
     valor_total?: DecimalNullableFilter<"fct_pedido"> | Decimal | DecimalJsLike | number | string | null
   }
 
   export type dim_insumoCreateWithoutFornecedorInput = {
     nome: string
     descricao?: string | null
-    unidade_medida?: string | null
+    unidade_medida: $Enums.Unidade_medida
     preco_unitario?: Decimal | DecimalJsLike | number | string | null
     map_composicao?: map_produto_composicaoCreateNestedManyWithoutInsumoInput
   }
@@ -12118,7 +12258,7 @@ export namespace Prisma {
     insumo_id?: number
     nome: string
     descricao?: string | null
-    unidade_medida?: string | null
+    unidade_medida: $Enums.Unidade_medida
     preco_unitario?: Decimal | DecimalJsLike | number | string | null
     map_composicao?: map_produto_composicaoUncheckedCreateNestedManyWithoutInsumoInput
   }
@@ -12138,7 +12278,7 @@ export namespace Prisma {
     descricao?: string | null
     preco_unitario?: Decimal | DecimalJsLike | number | string | null
     estoque?: number | null
-    unidade_medida?: string | null
+    unidade_medida: $Enums.Unidade_medida
     map_detalhe?: map_pedido_detalheCreateNestedManyWithoutProdutoInput
     map_composicao?: map_produto_composicaoCreateNestedManyWithoutProdutoInput
   }
@@ -12149,7 +12289,7 @@ export namespace Prisma {
     descricao?: string | null
     preco_unitario?: Decimal | DecimalJsLike | number | string | null
     estoque?: number | null
-    unidade_medida?: string | null
+    unidade_medida: $Enums.Unidade_medida
     map_detalhe?: map_pedido_detalheUncheckedCreateNestedManyWithoutProdutoInput
     map_composicao?: map_produto_composicaoUncheckedCreateNestedManyWithoutProdutoInput
   }
@@ -12187,7 +12327,7 @@ export namespace Prisma {
     insumo_id?: IntFilter<"dim_insumo"> | number
     nome?: StringFilter<"dim_insumo"> | string
     descricao?: StringNullableFilter<"dim_insumo"> | string | null
-    unidade_medida?: StringNullableFilter<"dim_insumo"> | string | null
+    unidade_medida?: EnumUnidade_medidaFilter<"dim_insumo"> | $Enums.Unidade_medida
     preco_unitario?: DecimalNullableFilter<"dim_insumo"> | Decimal | DecimalJsLike | number | string | null
     fornecedor_id?: IntNullableFilter<"dim_insumo"> | number | null
   }
@@ -12217,7 +12357,7 @@ export namespace Prisma {
     descricao?: StringNullableFilter<"dim_produto"> | string | null
     preco_unitario?: DecimalNullableFilter<"dim_produto"> | Decimal | DecimalJsLike | number | string | null
     estoque?: IntNullableFilter<"dim_produto"> | number | null
-    unidade_medida?: StringNullableFilter<"dim_produto"> | string | null
+    unidade_medida?: EnumUnidade_medidaFilter<"dim_produto"> | $Enums.Unidade_medida
     fornecedor_id?: IntNullableFilter<"dim_produto"> | number | null
   }
 
@@ -12580,7 +12720,7 @@ export namespace Prisma {
   export type dim_insumoCreateWithoutMap_composicaoInput = {
     nome: string
     descricao?: string | null
-    unidade_medida?: string | null
+    unidade_medida: $Enums.Unidade_medida
     preco_unitario?: Decimal | DecimalJsLike | number | string | null
     fornecedor?: dim_fornecedorCreateNestedOneWithoutDim_insumoInput
   }
@@ -12589,7 +12729,7 @@ export namespace Prisma {
     insumo_id?: number
     nome: string
     descricao?: string | null
-    unidade_medida?: string | null
+    unidade_medida: $Enums.Unidade_medida
     preco_unitario?: Decimal | DecimalJsLike | number | string | null
     fornecedor_id?: number | null
   }
@@ -12604,7 +12744,7 @@ export namespace Prisma {
     descricao?: string | null
     preco_unitario?: Decimal | DecimalJsLike | number | string | null
     estoque?: number | null
-    unidade_medida?: string | null
+    unidade_medida: $Enums.Unidade_medida
     fornecedor?: dim_fornecedorCreateNestedOneWithoutDim_produtoInput
     map_detalhe?: map_pedido_detalheCreateNestedManyWithoutProdutoInput
   }
@@ -12615,7 +12755,7 @@ export namespace Prisma {
     descricao?: string | null
     preco_unitario?: Decimal | DecimalJsLike | number | string | null
     estoque?: number | null
-    unidade_medida?: string | null
+    unidade_medida: $Enums.Unidade_medida
     fornecedor_id?: number | null
     map_detalhe?: map_pedido_detalheUncheckedCreateNestedManyWithoutProdutoInput
   }
@@ -12639,7 +12779,7 @@ export namespace Prisma {
   export type dim_insumoUpdateWithoutMap_composicaoInput = {
     nome?: StringFieldUpdateOperationsInput | string
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
-    unidade_medida?: NullableStringFieldUpdateOperationsInput | string | null
+    unidade_medida?: EnumUnidade_medidaFieldUpdateOperationsInput | $Enums.Unidade_medida
     preco_unitario?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     fornecedor?: dim_fornecedorUpdateOneWithoutDim_insumoNestedInput
   }
@@ -12648,7 +12788,7 @@ export namespace Prisma {
     insumo_id?: IntFieldUpdateOperationsInput | number
     nome?: StringFieldUpdateOperationsInput | string
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
-    unidade_medida?: NullableStringFieldUpdateOperationsInput | string | null
+    unidade_medida?: EnumUnidade_medidaFieldUpdateOperationsInput | $Enums.Unidade_medida
     preco_unitario?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     fornecedor_id?: NullableIntFieldUpdateOperationsInput | number | null
   }
@@ -12669,7 +12809,7 @@ export namespace Prisma {
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
     preco_unitario?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     estoque?: NullableIntFieldUpdateOperationsInput | number | null
-    unidade_medida?: NullableStringFieldUpdateOperationsInput | string | null
+    unidade_medida?: EnumUnidade_medidaFieldUpdateOperationsInput | $Enums.Unidade_medida
     fornecedor?: dim_fornecedorUpdateOneWithoutDim_produtoNestedInput
     map_detalhe?: map_pedido_detalheUpdateManyWithoutProdutoNestedInput
   }
@@ -12680,7 +12820,7 @@ export namespace Prisma {
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
     preco_unitario?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     estoque?: NullableIntFieldUpdateOperationsInput | number | null
-    unidade_medida?: NullableStringFieldUpdateOperationsInput | string | null
+    unidade_medida?: EnumUnidade_medidaFieldUpdateOperationsInput | $Enums.Unidade_medida
     fornecedor_id?: NullableIntFieldUpdateOperationsInput | number | null
     map_detalhe?: map_pedido_detalheUncheckedUpdateManyWithoutProdutoNestedInput
   }
@@ -12688,7 +12828,7 @@ export namespace Prisma {
   export type fct_pedidoCreateWithoutMap_detalheInput = {
     data_pedido?: Date | string | null
     data_entrega?: Date | string | null
-    status: string
+    status: $Enums.Status
     valor_total?: Decimal | DecimalJsLike | number | string | null
     cliente?: dim_clienteCreateNestedOneWithoutFct_pedidoInput
   }
@@ -12698,7 +12838,7 @@ export namespace Prisma {
     cliente_id?: number | null
     data_pedido?: Date | string | null
     data_entrega?: Date | string | null
-    status: string
+    status: $Enums.Status
     valor_total?: Decimal | DecimalJsLike | number | string | null
   }
 
@@ -12712,7 +12852,7 @@ export namespace Prisma {
     descricao?: string | null
     preco_unitario?: Decimal | DecimalJsLike | number | string | null
     estoque?: number | null
-    unidade_medida?: string | null
+    unidade_medida: $Enums.Unidade_medida
     fornecedor?: dim_fornecedorCreateNestedOneWithoutDim_produtoInput
     map_composicao?: map_produto_composicaoCreateNestedManyWithoutProdutoInput
   }
@@ -12723,7 +12863,7 @@ export namespace Prisma {
     descricao?: string | null
     preco_unitario?: Decimal | DecimalJsLike | number | string | null
     estoque?: number | null
-    unidade_medida?: string | null
+    unidade_medida: $Enums.Unidade_medida
     fornecedor_id?: number | null
     map_composicao?: map_produto_composicaoUncheckedCreateNestedManyWithoutProdutoInput
   }
@@ -12747,7 +12887,7 @@ export namespace Prisma {
   export type fct_pedidoUpdateWithoutMap_detalheInput = {
     data_pedido?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     data_entrega?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    status?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     valor_total?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     cliente?: dim_clienteUpdateOneWithoutFct_pedidoNestedInput
   }
@@ -12757,7 +12897,7 @@ export namespace Prisma {
     cliente_id?: NullableIntFieldUpdateOperationsInput | number | null
     data_pedido?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     data_entrega?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    status?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     valor_total?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
   }
 
@@ -12777,7 +12917,7 @@ export namespace Prisma {
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
     preco_unitario?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     estoque?: NullableIntFieldUpdateOperationsInput | number | null
-    unidade_medida?: NullableStringFieldUpdateOperationsInput | string | null
+    unidade_medida?: EnumUnidade_medidaFieldUpdateOperationsInput | $Enums.Unidade_medida
     fornecedor?: dim_fornecedorUpdateOneWithoutDim_produtoNestedInput
     map_composicao?: map_produto_composicaoUpdateManyWithoutProdutoNestedInput
   }
@@ -12788,7 +12928,7 @@ export namespace Prisma {
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
     preco_unitario?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     estoque?: NullableIntFieldUpdateOperationsInput | number | null
-    unidade_medida?: NullableStringFieldUpdateOperationsInput | string | null
+    unidade_medida?: EnumUnidade_medidaFieldUpdateOperationsInput | $Enums.Unidade_medida
     fornecedor_id?: NullableIntFieldUpdateOperationsInput | number | null
     map_composicao?: map_produto_composicaoUncheckedUpdateManyWithoutProdutoNestedInput
   }
@@ -12797,14 +12937,14 @@ export namespace Prisma {
     pedido_id?: number
     data_pedido?: Date | string | null
     data_entrega?: Date | string | null
-    status: string
+    status: $Enums.Status
     valor_total?: Decimal | DecimalJsLike | number | string | null
   }
 
   export type fct_pedidoUpdateWithoutClienteInput = {
     data_pedido?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     data_entrega?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    status?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     valor_total?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     map_detalhe?: map_pedido_detalheUpdateManyWithoutPedidoNestedInput
   }
@@ -12813,7 +12953,7 @@ export namespace Prisma {
     pedido_id?: IntFieldUpdateOperationsInput | number
     data_pedido?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     data_entrega?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    status?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     valor_total?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     map_detalhe?: map_pedido_detalheUncheckedUpdateManyWithoutPedidoNestedInput
   }
@@ -12822,7 +12962,7 @@ export namespace Prisma {
     pedido_id?: IntFieldUpdateOperationsInput | number
     data_pedido?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     data_entrega?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    status?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     valor_total?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
   }
 
@@ -12830,7 +12970,7 @@ export namespace Prisma {
     insumo_id?: number
     nome: string
     descricao?: string | null
-    unidade_medida?: string | null
+    unidade_medida: $Enums.Unidade_medida
     preco_unitario?: Decimal | DecimalJsLike | number | string | null
   }
 
@@ -12840,13 +12980,13 @@ export namespace Prisma {
     descricao?: string | null
     preco_unitario?: Decimal | DecimalJsLike | number | string | null
     estoque?: number | null
-    unidade_medida?: string | null
+    unidade_medida: $Enums.Unidade_medida
   }
 
   export type dim_insumoUpdateWithoutFornecedorInput = {
     nome?: StringFieldUpdateOperationsInput | string
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
-    unidade_medida?: NullableStringFieldUpdateOperationsInput | string | null
+    unidade_medida?: EnumUnidade_medidaFieldUpdateOperationsInput | $Enums.Unidade_medida
     preco_unitario?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     map_composicao?: map_produto_composicaoUpdateManyWithoutInsumoNestedInput
   }
@@ -12855,7 +12995,7 @@ export namespace Prisma {
     insumo_id?: IntFieldUpdateOperationsInput | number
     nome?: StringFieldUpdateOperationsInput | string
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
-    unidade_medida?: NullableStringFieldUpdateOperationsInput | string | null
+    unidade_medida?: EnumUnidade_medidaFieldUpdateOperationsInput | $Enums.Unidade_medida
     preco_unitario?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     map_composicao?: map_produto_composicaoUncheckedUpdateManyWithoutInsumoNestedInput
   }
@@ -12864,7 +13004,7 @@ export namespace Prisma {
     insumo_id?: IntFieldUpdateOperationsInput | number
     nome?: StringFieldUpdateOperationsInput | string
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
-    unidade_medida?: NullableStringFieldUpdateOperationsInput | string | null
+    unidade_medida?: EnumUnidade_medidaFieldUpdateOperationsInput | $Enums.Unidade_medida
     preco_unitario?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
   }
 
@@ -12873,7 +13013,7 @@ export namespace Prisma {
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
     preco_unitario?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     estoque?: NullableIntFieldUpdateOperationsInput | number | null
-    unidade_medida?: NullableStringFieldUpdateOperationsInput | string | null
+    unidade_medida?: EnumUnidade_medidaFieldUpdateOperationsInput | $Enums.Unidade_medida
     map_detalhe?: map_pedido_detalheUpdateManyWithoutProdutoNestedInput
     map_composicao?: map_produto_composicaoUpdateManyWithoutProdutoNestedInput
   }
@@ -12884,7 +13024,7 @@ export namespace Prisma {
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
     preco_unitario?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     estoque?: NullableIntFieldUpdateOperationsInput | number | null
-    unidade_medida?: NullableStringFieldUpdateOperationsInput | string | null
+    unidade_medida?: EnumUnidade_medidaFieldUpdateOperationsInput | $Enums.Unidade_medida
     map_detalhe?: map_pedido_detalheUncheckedUpdateManyWithoutProdutoNestedInput
     map_composicao?: map_produto_composicaoUncheckedUpdateManyWithoutProdutoNestedInput
   }
@@ -12895,7 +13035,7 @@ export namespace Prisma {
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
     preco_unitario?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     estoque?: NullableIntFieldUpdateOperationsInput | number | null
-    unidade_medida?: NullableStringFieldUpdateOperationsInput | string | null
+    unidade_medida?: EnumUnidade_medidaFieldUpdateOperationsInput | $Enums.Unidade_medida
   }
 
   export type map_produto_composicaoCreateManyInsumoInput = {

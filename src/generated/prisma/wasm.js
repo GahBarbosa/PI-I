@@ -196,7 +196,22 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
+exports.Unidade_medida = exports.$Enums.Unidade_medida = {
+  Unidade: 'Unidade',
+  Duzia: 'Duzia',
+  Pacote: 'Pacote',
+  Kilo: 'Kilo',
+  Litro: 'Litro',
+  Centimetro: 'Centimetro'
+};
 
+exports.Status = exports.$Enums.Status = {
+  Corte: 'Corte',
+  Costura: 'Costura',
+  Revisão: 'Revisão',
+  Etiqueta: 'Etiqueta',
+  Embalagem: 'Embalagem'
+};
 
 exports.Prisma.ModelName = {
   dim_cliente: 'dim_cliente',

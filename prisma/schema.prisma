@@ -8,6 +8,23 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Unidade_medida {
+  Unidade
+  Duzia
+  Pacote
+  Kilo
+  Litro
+  Centimetro
+}
+
+enum Status {
+  Corte
+  Costura
+  Revisão
+  Etiqueta
+  Embalagem
+}
+
 model dim_cliente {
   cliente_id    Int          @id @default(autoincrement())
   nome          String       @db.VarChar(100)
@@ -36,7 +53,7 @@ model dim_insumo {
   insumo_id      Int                      @id @default(autoincrement())
   nome           String                   @db.VarChar(100)
   descricao      String?                  @db.VarChar(200)
-  unidade_medida String?                  @db.VarChar(20)
+  unidade_medida Unidade_medida
   preco_unitario Decimal?                 @db.Decimal(10, 2)
   fornecedor_id  Int?
   fornecedor     dim_fornecedor?          @relation(fields: [fornecedor_id], references: [fornecedor_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_fornecedor")
@@ -49,7 +66,7 @@ model dim_produto {
   descricao      String?                  @db.VarChar(200)
   preco_unitario Decimal?                 @db.Decimal(10, 2)
   estoque        Int?                     @default(0)
-  unidade_medida String?                  @db.VarChar(20)
+  unidade_medida Unidade_medida
   fornecedor_id  Int?
   fornecedor     dim_fornecedor?          @relation(fields: [fornecedor_id], references: [fornecedor_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_fornecedor")
   map_detalhe    map_pedido_detalhe[]
@@ -61,7 +78,7 @@ model fct_pedido {
   cliente_id   Int?
   data_pedido  DateTime?            @default(dbgenerated("CURRENT_DATE")) @db.Date
   data_entrega DateTime?            @db.Date
-  status       String               @db.VarChar(20)
+  status       Status
   valor_total  Decimal?             @db.Decimal(12, 2)
   cliente      dim_cliente?         @relation(fields: [cliente_id], references: [cliente_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_cliente")
   map_detalhe  map_pedido_detalhe[]
