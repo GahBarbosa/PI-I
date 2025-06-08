@@ -8,6 +8,14 @@ export async function getClientes() {
   return clientes
 }
 
+export async function getCliente(cliente_id: number) {
+  noStore();
+  const cliente = await prisma.dim_cliente.findUnique({
+    where: { cliente_id: cliente_id },
+  });
+  return cliente;
+}
+
 export async function getProdutos() {
   noStore();
   const produtos = await prisma.dim_produto.findMany();
@@ -30,6 +38,16 @@ export async function getPedidos() {
   noStore();
   const pedidos = await prisma.fct_pedido.findMany();
   return pedidos
+}
+
+export async function getPedidosPorCliente(cliente_id: number) {
+  noStore();
+  const pedidos = await prisma.fct_pedido.findMany({
+    where: {
+      cliente_id: cliente_id,
+    },
+  });
+  return pedidos;
 }
 
 export async function getComposicao() {

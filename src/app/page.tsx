@@ -1,34 +1,49 @@
-import { getClientes, getComposicao, getDetalhes, getFornecedores, getInsumos, getPedidos, getProdutos } from '@/api/database';
-import List from '@/components/List';
+'use client';
+import Navbar from '@/components/Navbar';
+import { Button } from '@/components/ui/button';
+import Image from 'next/image';
+import Link from 'next/link';
 
-// type Cliente = {
-//   id: number,
-//   nome: string,
-//   cpf_cnpj: string;
-//   telefone: string | null;
-//   email: string;
-//   endereco: string | null;
-//   data_cadastro: Date | null;
-// }
-
-export default async function Home() {
-  const clientes = await getClientes()
-  const produtos = await getProdutos()
-  const insumos = await getInsumos()
-  const fornecedores = await getFornecedores()
-  const pedidos = await getPedidos()
-  const detalhes = await getDetalhes()
-  const composicao = await getComposicao()
-
+export default function Home() {
   return (
-    <div className="min-h-screen bg-black text-amber-50 grid grid-cols-1 gap-4 p-4 col-s">
-      <List code='cli' title='Lista de Clientes' dados={clientes} />
-      <List code='pro' title='Lista de Produtos' dados={produtos} />
-      <List code='ins' title='Lista de Insumos' dados={insumos} />
-      <List code='for' title='Lista de Fornecedores' dados={fornecedores} />
-      <List code='ped' title='Lista de Pedidos' dados={pedidos} />
-      <List code='det' title='Lista de Detalhes dos Pedidos' dados={detalhes} />
-      <List code='com' title='Lista de Composicao dos Produtos' dados={composicao} />
+    <div className="min-h-screen bg-black">
+      <Navbar
+        left={
+          <Link href="/">
+            <Image src="/AMGLogo.svg" alt="Logo AMG" width={40} height={40} />
+          </Link>
+        }
+        right={
+          <>
+            <Button asChild variant={'ghost'} className="text-black hover:cursor-pointer">
+              <Link href="/Sobre">Sobre Nós</Link>
+            </Button>
+
+            <Button asChild className="bg-[#950404] hover:bg-[#7a0303]">
+              <Link href="/Login">Login</Link>
+            </Button>
+          </>
+        }
+      />
+
+      <div className="relative h-[calc(100vh-4rem)] bg-cover bg-center bg-no-repeat" style={{ backgroundImage: "url('/maquina.png')" }}>
+        <div className="absolute inset-0 bg-[#950404] opacity-40 z-0" />
+
+        <div className="relative z-10 flex flex-col items-center justify-center h-full text-white text-center">
+          <h1 className="text-5xl font-[viga]">Bem-vindo(a) à</h1>
+          <h1 className="text-9xl font-[literata]">AMG</h1>
+
+          <div className="flex flex-row items-center justify-center gap-4 w-full max-w-xl mt-4">
+            <div className="h-px flex-1 bg-white" />
+            <h1 className="text-4xl font-[literata]">Confecções</h1>
+            <div className="h-px flex-1 bg-white" />
+          </div>
+
+          <Button className="mt-6 bg-[#FFC3C3] text-black hover:bg-[#f2bebe] hover:cursor-pointer">
+            Saiba Mais
+          </Button>
+        </div>
+      </div>
     </div>
   );
 }

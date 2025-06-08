@@ -1,0 +1,46 @@
+'use server';
+
+import Navbar from '@/components/Navbar'
+import Link from 'next/link'
+import { Button } from '@/components/ui/button'
+import { DataTable } from './data-table'
+import { columns, Cliente } from './columns'
+import { getClientes } from '@/api/database'
+
+
+
+export default async function ClientePage() {
+  const clientes = await getClientes()
+
+  return (
+    <div className="min-h-screen bg-white text-amber-50">
+      <Navbar
+        color='bg-[#6C0404]'
+        left={
+          <Link href="/">
+            <img src="/AMGLogo.svg" alt="Logo AMG" width={40} height={40} />
+          </Link>
+        }
+        middle={
+          <div className="flex gap-6 items-center">
+            <Link href="/Clientes" className="relative text-white">
+              Clientes
+              <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-white" />
+            </Link>
+            <Link href="/produtos" className="text-white hover:underline">Produtos</Link>
+            <Link href="/pedidos" className="text-white hover:underline">Pedidos</Link>
+            <Link href="/relatorios" className="text-white hover:underline">Relatórios</Link>
+          </div>
+        }
+        right={<Button className="bg-[#950404] hover:bg-[#7a0303]">Sair</Button>}
+      />
+
+      <main className="mt-12 bg-white text-black">
+        <h1 className="text-3xl font-bold mb-6 text-center tex">Lista de Clientes</h1>
+        <div className="max-w-4xl mx-auto">
+          <DataTable columns={columns} data={clientes} />
+        </div>
+      </main>
+    </div>
+  )
+}
