@@ -4,15 +4,12 @@ import Navbar from "@/components/Navbar";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
-type PageProps = {
-  params: {
-    cliente_id: string;
-  };
-};
+type Params = Promise<{ cliente_id: string }>;
 
-export default async function ClientePage({ params }: PageProps) {
-  const cliente = await getCliente(parseInt(params.cliente_id));
-  const pedidos = await getPedidosPorCliente(parseInt(params.cliente_id));
+export default async function ClientePage({ params }: { params: Params }) {
+  const { cliente_id } = await params;
+  const cliente = await getCliente(parseInt(cliente_id));
+  const pedidos = await getPedidosPorCliente(parseInt(cliente_id));
 
   if (!cliente) return notFound();
 
