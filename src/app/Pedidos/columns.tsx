@@ -7,53 +7,50 @@ import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown, MoreHorizontal } from "lucide-react";
 import { redirect } from "next/navigation";
 
-export type Cliente = {
-  cliente_id: number;
-  nome: string;
-  cpf_cnpj: string;
-  telefone: string | null;
-  email: string;
-  endereco: string | null;
-  data_cadastro: Date | null;
+
+
+export type Pedido = {
+  cliente_id: number | null;
+  pedido_id: number;
+  data_pedido: Date | null;
+  data_entrega: Date | null;
+  status: string;
+  valor_total: number | null;
 };
 
-export const columns: ColumnDef<Cliente>[] = [
+export const columns: ColumnDef<Pedido>[] = [
 
   {
-    accessorKey: "nome",
-    header: "Nome",
+    accessorKey: "pedido_id",
+    header: "Pedido Id",
   },
   {
-    accessorKey: "cpf_cnpj",
-    header: "CPF/CNPJ",
+    accessorKey: "client_id",
+    header: "Cliente Id",
   },
   {
-    accessorKey: "telefone",
-    header: "Telefone",
-    cell: ({ row }) => row.original.telefone || "-",
-  },
-  {
-    accessorKey: "email",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Email
-          <ArrowUpDown />
-        </Button>
-      )
-    },
-    cell: ({ row }) => <div className="lowercase">{row.getValue("email")}</div>,
-  },
-  {
-    accessorKey: "data_cadastro",
-    header: "Data de Cadastro",
+    accessorKey: "data_pedido",
+    header: "Data do Pedido",
     cell: ({ row }) =>
-      row.original.data_cadastro
-        ? new Date(row.original.data_cadastro).toLocaleDateString("pt-BR")
+      row.original.data_pedido
+        ? new Date(row.original.data_pedido).toLocaleDateString("pt-BR")
         : "-",
+  },
+  {
+    accessorKey: "data_entrega",
+    header: "Data do Entrega",
+    cell: ({ row }) =>
+      row.original.data_entrega
+        ? new Date(row.original.data_entrega).toLocaleDateString("pt-BR")
+        : "-",
+  },
+  {
+    accessorKey: "status",
+    header: "Status",
+  },
+  {
+    accessorKey: "valor_total",
+    header: "Valor Total",
   },
   {
     id: "actions",
@@ -73,14 +70,16 @@ export const columns: ColumnDef<Cliente>[] = [
             <DropdownMenuSeparator />
             <DropdownMenuItem
               className="hover:cursor-pointer"
-              onClick={() => navigator.clipboard.writeText(cliente.email)}
+              onClick={() => redirect(`/Pedidos/${cliente.pedido_id}`)}
             >
-              Copiar email
+              Visualizar Pedido
             </DropdownMenuItem>
             <DropdownMenuItem
               className="hover:cursor-pointer"
               onClick={() => redirect(`/Clientes/${cliente.cliente_id}`)}
-            >Visualizar Cliente</DropdownMenuItem>
+            >
+              Visualizar Cliente
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       )
